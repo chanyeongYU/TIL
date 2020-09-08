@@ -1,0 +1,56 @@
+# Package
+
+##### package
+
+- 프로그램 설치 후 바로 실행 할 수 있는 설치 파일
+- 확장명 **`.deb`**
+
+
+
+**`dpkg`**
+
+- ubuntu에서 패키지를 설치할 때 많이 사용되는 명령어
+- apt-get나오기 전에 주로 사용
+
+
+
+**`apt-get`**
+
+- `dpkg`의 확장 개념
+- `dpkg`의 기능 포함
+
+
+
+## `dpkg`
+
+- 명령어 옵션
+
+
+
+
+
+- 단점: 의존성 문제
+  - 의존성 문제를 해결한 것이 **`apt-get`**
+
+
+
+## `apt-get`
+
+- `.deb`패키지를 설치하는 편리한 도구
+
+- ubuntu가 제공하는 deb파일 저장소에서 다운로드하여 설치
+
+  - 의존성 문제를 걱정하지 않아도 됨
+
+  - `dpkg`는 `.deb`를 미리 다운로드한 후 설치해야 함
+
+    ![image-20200908154853978](C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200908154853978.png)	
+
+
+
+
+
+
+
+### root password 분실 시 조치
+
