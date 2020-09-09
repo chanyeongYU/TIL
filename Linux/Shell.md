@@ -286,9 +286,40 @@
   0(분)	5(시)	*(일)	*(월)	1(요일, 0~6:일~토)	tar -zcf(명령어)	/var/backups/home.tgz	/home/
   ```
 
-  
 
 
+
+- `backup.sh`생성
+
+```shell
+#!/bin/bash
+set $(date)
+fname="backup$1$2$3tar.xz"			⇐ 2020.09.09.tar.xz
+tar cfJ /backup/$fname /home
+```
+
+- 크론에 등록 `vim /etc/crontab`
+
+```shell
+# /etc/crontab: system-wide crontab
+# Unlike any other crontab you don't have to run the `crontab'
+# command to install the new version when you edit this file
+# and files in /etc/cron.d. These files also have username fields,
+# that none of the other crontabs do.
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# m h dom mon dow user  command
+17 *    * * *   root    cd / && run-parts --report /etc/cron.hourly
+25 6    * * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
+47 6    * * 7   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
+52 6    1 * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
+
+# 매월 16일 새벽 3시 20분에 백업을 수행
+20   03   16   *   *    root    /root/backup.sh
+#
+```
 
 
 
