@@ -701,4 +701,112 @@ CMD ["nginx", "-g", "daemon off;"]
    ```
 
    
+   
+10. 모든 컨테이너를 삭제
 
+    [root@demo ~]# `docker container rm -f $(docker container ls -a -q)`
+
+
+
+## Docker Compose
+
+#### Docker Composer 설치
+
+```
+ `[root@demo ~]# curl -L http://github.com/docker/compose/release/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/bin/docker-composs
+```
+
+
+
+#### docker-compose.yml 파일을 생성
+
+[root@demo ~]# `vim docker-compose.yml`
+
+```
+db:
+  image: docker.io/mysql               ⇒ 컨테이너 이미지
+  ports:
+    - "3306:3306"
+  environment:
+    - MYSQL_ROOT_PASSWORD=password
+
+app:
+  image: docker.io/tomcat
+  ports:
+    - "9090:8080"
+
+web:
+  image: docker.io/nginx
+  ports:
+    - "9000:80"
+```
+
+#### 컨테이너 생성 및 확인
+
+[root@demo ~]# `docker-compose up -d`
+
+```
+Pulling app (docker.io/tomcat:latest)...
+Trying to pull repository docker.io/library/tomcat ...
+latest: Pulling from docker.io/library/tomcat
+d6ff36c9ec48: Pull complete
+c958d65b3090: Pull complete
+edaf0a6b092f: Pull complete
+80931cf68816: Pull complete
+bf04b6bbed0c: Pull complete
+8bf847804f9e: Pull complete
+6bf89641a7f2: Pull complete
+3e97fae54404: Pull complete
+10dee6830d45: Pull complete
+680b26b7a444: Pull complete
+Digest: sha256:7399db46a9f852b20437d1011eeac454e211935c5fd807f027fab6d89b594b5d
+Status: Downloaded newer image for docker.io/tomcat:latest
+Pulling db (docker.io/mysql:latest)...
+Trying to pull repository docker.io/library/mysql ...
+latest: Pulling from docker.io/library/mysql
+d121f8d1c412: Already exists
+f3cebc0b4691: Pull complete
+1862755a0b37: Pull complete
+489b44f3dbb4: Pull complete
+690874f836db: Pull complete
+baa8be383ffb: Pull complete
+55356608b4ac: Pull complete
+dd35ceccb6eb: Pull complete
+429b35712b19: Pull complete
+162d8291095c: Pull complete
+5e500ef7181b: Pull complete
+af7528e958b6: Pull complete
+Digest: sha256:e1bfe11693ed2052cb3b4e5fa356c65381129e87e38551c6cd6ec532ebe0e808
+Status: Downloaded newer image for docker.io/mysql:latest
+Creating root_web_1
+Creating root_app_1
+Creating root_db_1
+```
+
+[root@demo ~]# `docker container ls`
+
+```
+CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS                               NAMES
+6854584948a3        docker.io/mysql     "docker-entrypoint..."   About a minute ago   Up About a minute   0.0.0.0:3306->3306/tcp, 33060/tcp   root_db_1
+e13f5ef2f223        docker.io/tomcat    "catalina.sh run"        About a minute ago   Up About a minute   0.0.0.0:9090->8080/tcp              root_app_1
+dddc8987faee        docker.io/nginx     "/docker-entrypoin..."   About a minute ago   Up About a minute   0.0.0.0:9000->80/tcp                root_web_1
+```
+
+
+
+#### 컨테이너 중지
+
+[root@demo ~]# `docker-compose down`
+
+```
+Stopping root_db_1 ... done
+Stopping root_app_1 ... done
+Stopping root_web_1 ... done
+Removing root_db_1 ... done
+Removing root_app_1 ... done
+Removing root_web_1 ... done
+```
+
+
+
+![image-20200911141517984](C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200911141517984.png)
