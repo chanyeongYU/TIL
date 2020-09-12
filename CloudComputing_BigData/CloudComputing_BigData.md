@@ -273,3 +273,113 @@
 
 
 
+## Big Data 다루기
+
+### Divide & Conquer
+
+- **병렬화**
+
+  - Challenges
+
+    - 어떤 방식으로 여러 worker에 작업을 분배할 것인가?
+    - worker들보다 더 많은 수의 작업들이 있다면?
+      - **로드 밸런싱**
+    - worker들이 실행 결과들을 서로 공유해야 한다면
+    - 중간 결과물들을 어떻게 하나로 합칠 것인가?
+    - 모든 worker들의 작업이 완료된 것을 어떻게 알것인가?
+    - worker들이 죽게된다면?
+    - 데이터 센터에서 또는 센터들끼리 할때 더욱 어려워짐
+    - 디버깅도 어려움
+
+  - 현실적으로
+
+    - Lots of one-off solutions
+    - 프로그래머들에게 부담이됨
+
+  - **Synchronization Mechanism**이 필요
+
+  - 문제를 해결하기 위해 **Programming Model**과 **Design Patterns**이 생김
+
+    - **Programming Model**
+
+      - Shared Memory
+        - Scale Up만 가능 Scale Out은 안된다는 문제점
+      - Message Passing
+
+    - **Design Patterns**
+
+      - Master-Slaves
+
+      - Producer-consumer Flows
+
+      - Shared Work Queues
+
+         <img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200912210158659.png" alt="image-20200912210158659" style="zoom:67%;" />
+
+
+
+### Making the Datacenter as a Computer
+
+- Datacenter가 하나의 커다란 컴퓨터라면?
+- **추상화 레벨을 어떻게 잡아갈 것인가?**
+  - 폰-노이만 아키텍쳐(형대 컴퓨터)를 넘어서서
+  -  Datacenter의 Instruction set는 무엇인가?
+- **개발자들에세 System-Level위 디테일을 숨기기**
+  - 병렬화의 현실적인 문제들(Lots of one-off solutions, Custom Code)로 인해 개발자들에게 부담을 주지 않기위해
+- **무엇을 할지와 어떻게 할지는 명확히 구분**
+  - 무엇을 할지 알려주면 어떻게 할지는 알아서 하도록
+
+
+
+#### Big Ideas
+
+- Scale **OUT**, not UP
+  - Scale Up으로는 컴퓨터 하드웨어적인 한계가 존재하기 때문에
+- Move processing **close to** the data
+  - Cluster(컴퓨터들의 집합)는 Bandwidth의 한계를 가지고 있기 때문에
+- Process data **sequentially**, avoid random access
+  - seeks are expensive, Disk throughput is reasonable
+
+- Seamless **Scalability**
+
+
+
+#### Scale "OUT"
+
+- 어떤 Computer도 빅데이터를 담기에 충분하지 않음
+- 컴퓨터들간의 통신이 필요
+  - intra-node(한 컴퓨터 내에서): ~100ns
+  - inter-node(다른 컴퓨터들간): ~ 100us
+  - 1000배 차이
+
+
+
+#### Storage Hierarchy
+
+- Scale Out하면서 용량은 증가하지만 Bandwidth가 떨러짐
+
+​	<img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200912212114514.png" alt="image-20200912212114514" style="zoom:67%;" />
+
+
+
+- 해결하기 위한 아이디어로 "**Move processing close to the data"**
+
+
+
+#### Seeks vs Scans
+
+가정: 100Byte 레코드로 구성된 1TB크기 데이터 베이스
+
+- Random Access 할 때
+  - 최대 35Days
+- 모든 레코드를 Rewrite할 때
+  - 100Mb/s로 가정하면 대략 5.6시간
+- **결론 -> Avoid Random Seeks**
+
+
+
+### Justifying the "Big Ideas"
+
+- Datacenter 를 하나의 컴퓨터처럼 만들기 위한 4가지의 Big Idea를 기반으로 **Hadoop** 탄생
+- Hadoop의 철학
+
