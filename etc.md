@@ -36,3 +36,12 @@
     - URL의 경우 URL Encoding 기법을 이용해서 표현
     - CompanyName=Bandi&Lunis => CompanyName=Bandi&Lunis
 
+
+
+#### 동기 / 비동기
+
+- 동기: 응답을 기다림
+
+- 비동기: 요청을 보내고 할꺼 함 
+  - 콜백함수: 응답..
+
