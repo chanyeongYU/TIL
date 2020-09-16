@@ -139,7 +139,7 @@
 
 
 
-### Hardware(Hardware Virtualization, 가상화) :star:
+#### Hardware(Hardware Virtualization, 가상화) :star:
 
 ​	<img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200913144411210.png" alt="image-20200913144411210" style="zoom:67%;" />
 
@@ -184,5 +184,184 @@
         - 하드웨어 관리나, 로드 밸런싱, 시스템 복구 등의 이유로..
       - Live Migration은 가상환경을 종료시키지 않고 이동
 
+
+
+
+#### Autonomic Computing
+
+- 컴퓨터 소프트웨어가 스스로 판단을해서 행동할 수 있음
+- 컴퓨터 시스템의 복잡도가 늘어나 Autonomic Computing에 대한 연구가 활성화됨
+- **사람의 개입을 최대한 줄이고, 컴퓨터 스스로 관리가 가능**
+- 클라우드 유저 입장으로서는 중요도가 낮지만, **클라우드 사업자로서는 상당히 중요**
+- 센서를 통한 지속적인 모니터링
+- 모니터링 데이터에 의한 적응형 엔진
+- **Data Center Automation으로 확장**
+  - 실행중인 어플리케이션의 서비스 레벨(응답 시간 등..)을 관리
+  - 데이터센터의 수용량 관리
+  - 장애 복구
+  - 가상머신 자동 프로비저닝
+
+
+
+## Layers and Types of Clouds
+
+​	<img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200917011523965.png" alt="image-20200917011523965" style="zoom:67%;" />
+
+#### Infrastructure as a Service
+
+- **가상화된 컴퓨팅 자원**
+- 온디맨드 형태로 제공
+- **Cloud Infrastructure**
+- 다양한 OS나 SW 스택을 운영할 수 있도록 온디맨드 형태로 프로비저닝
+- ex) EC2
+
+
+
+#### Platform as a Service
+
+- **클라우드환경에서 쉽게 프로그래밍이 가능하도록 환경을 제공해주는 것**
+- **Cloud Platform** 
+- **개발자들이 어플리케이션을 생성하고 배포할 수 있는 또는 개발하고 구동 할 수 있는 환경을 제공**
+- 프로세서와 메모리가 어떻게 구성되는지 알 필요 없다(가상화)
+- 데이터 접근, 인증, 지불
+- Building blocks to new applications
+  - In-Memory object cache (memcache)
+  - Mail Service
+  - Messaging Service
+  - Image Manipulation Service
+  - Authentication service
+- ex) Google AppEngine
+
+
+
+#### Software as a Service
+
+- 사용자들이 웹을 통해서 접근할 수 있는 것
+- 점진적으로 클라우드 쪽으로 이동중
+- 사용자 입장에서도 SW를 관리할 부담이 감소
+- 개발과 테스팅 과정의 단순화
+  - 다양한 형태의 OS에서 구동되는 소프트웨어 보다 웹표준을 통해서 제공하는 것이 편함
+  - 크로스플랫폼 상에서 접근 가능
+- ex) Salesforce
+
+
+
+## Deployment Models
+
+ <img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200917013613854.png" alt="image-20200917013613854" style="zoom:67%;" />
+
+
+
+#### Public Cloud
+
+- 널리 알려진 보통의 클라우드 서비스(AWS, GCP ...)
+- 인터넷상에서 비용만 지불하면 누구나 사용 가능(Pay as You Go)
+- **Multi-Tenant Cloud**
+  - 많은 사용자들의 집합
+  - 다양한 회사
+  - 소수의 사용자만을 위한것이 아님
+
+
+
+#### Private Cloud
+
+- 조직 내에서만 접근이 가능한 클라우드
+- 클라우드 컴퓨팅 모델이 한 조직 내에서 동작
+- 조직 부서별로 사용량 측정(Metering)은 가능
+- 조직원들 스스로 서비스 이용(Self-Service Interface)
+- **Privileged Access to Virtual Servers**
+  - 가상화된 서버에 root권한 부여
+  - 가상 서버 내부에서 쉽게 root권한을 사용할 수 있음
+- 대기업 소유의 데이터 센터를 효율적으로 운영
+- **가상화 기술과 클라우드 같은 인터페이스를 추가함으로써** 조직의 인프라를 재구조
+
+
+
+#### Hybrid Cloud
+
+- **Private Cloud의 수용량이 충분치 않을 때 Public Cloud를 같이 사용(Cloud-Bursting)**
+
+- 조직의 민감한 사항은 Private에 그렇지 않은 것은 Public에 저장
+
   
+
+#### Community Cloud
+
+- 여러 조직들 끼리만 공유하는 클라우드
+
+
+
+## Desired Features of the Cloud
+
+#### Self-Service
+
+- 사용자가 서비스를 요청하고 커스터마이징하거나 사용
+- **중간의 사람의 개입 없이 사용자 스스로 서비스**
+
+
+
+#### Per-Usage Metering and Billing
+
+- 사용량을 측정하고, 비용 청구
+- **초기 투자 비용 없이 필요한 만큼만 요청하고 사용할 수 있도록 해줌**
+- 단기적으로 가격이 책정 되야함
+- 사용자는 필요없는 자원을 해제(비용을 지불하지 않음)할 수 있음
+
+
+
+#### Elasticity
+
+- 탄력성
+
+  - 필요에 따라 늘렸다 줄였다
+
+- 온디맨드 형태로 **무한대처럼 느낄만한** 컴퓨팅 자원을 제공
+
+- 추가 자원을 **자동으로** 프로비저닝, 어플리케이션 사용량이 증가하면 자동으로 프로비저닝되고 
+
+  감소하면 자동으로 해제 (**Auto Scaling**)
+
+  - 사용자가 어느 정도 가이드라인을 만들 수 있음
+  - 항상 되는 것은 아님
+    - web에서는 적당하지만, DB에서는 부적합
+
+
+
+#### Customization
+
+- 여러 사용자 군집이 사용하게 되면 요구상항이 다양하기 때문에 커스터마이징 할 수 있어야함
+
+
+
+## Top Cloud Providers 2019
+
+ <img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200917023109802.png" alt="image-20200917023109802" style="zoom: 67%;" />
+
+
+
+## The Future of a Data Center?
+
+​	<img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200917023235703.png" alt="image-20200917023235703" style="zoom: 50%;" />
+
+
+
+​	<img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200917023622515.png" alt="image-20200917023622515" style="zoom: 70%;" />
+
+- 컴퓨팅 자원을 효율적으로 공유 및 관리
+
+
+
+## Summary
+
+- **Cloud computing** is a new computing paradigm that offers a huge amount of compute and storage resources
+  - 대용량의 컴퓨팅 자원을 사용자(기업 또는 개인)가 필요한 만큼만 제공해주는 새로운 컴퓨팅 패러다임
+  - 사용량을 측정해 비용 청구
+  - 갑자기 생겨난 것이 아니라 기술이 발전하면서  나옴
+
+
+
+- Clouds aim at offering compute, storage, network, software, or a combination of those **as a service**
+  - Infrastructure as a Service
+  - Platform as a Service
+  - Software as a Service
 
