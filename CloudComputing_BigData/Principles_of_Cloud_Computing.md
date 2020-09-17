@@ -347,7 +347,7 @@
 
 ​	<img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200917023622515.png" alt="image-20200917023622515" style="zoom: 70%;" />
 
-- 컴퓨팅 자원을 효율적으로 공유 및 관리
+- 컴퓨팅 자원을 효율적으로 공유햣  및 관리
 
 
 
