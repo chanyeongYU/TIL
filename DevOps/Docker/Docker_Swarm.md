@@ -186,3 +186,102 @@ To add a manager to this swarm, run the following command:
     192.168.111.100:2377
 ```
 
+
+
+## Service
+
+- 같은 이미지에서 생성된 컨테이너의 집합
+- 서비스를 제어하면 해당 서비스 내의 컨테이너에 명령이 실행됨
+- 서비스 내에 컨테이너는 한 개 이상 존재할 수 있으며, 컨테이너들은 각 워커 노드와 매니저 노드에 할당
+- 각 노드에 할당된 컨테이너들은 Task라고 함
+
+
+
+#### 1. 서비스 생성 및 조회
+
+- [root@swarm-manager ~]# docker service create ubuntu:14.04 bin/sh -c "while true; do echo hello world; sleep 1; done"
+
+  ```
+  q92budmtk543p633l36hk2srs
+  ```
+
+- [root@swarm-manager ~]# docker service ls
+
+  ```
+  ID            NAME             MODE        REPLICAS  IMAGE
+  q92budmtk543  confident_jones  replicated  0/1       ubuntu:14.04
+  ```
+
+- [root@swarm-manager ~]# docker service ps q92b
+
+  ```
+  ID            NAME               IMAGE         NODE           DESIRED STATE  CURRENT STATE           ERROR  PORTS
+  ovrt9jwj0qf1  confident_jones.1  ubuntu:14.04  swarm-worker1  Running        Running 53 seconds ago
+  ```
+
+  
+
+#### 2. 서비스 삭제
+
+- [root@swarm-manager ~]# docker service rm q92b
+
+
+
+#### 3. nginx웹서비스 생성
+
+- [root@swarm-manager ~]# docker service create --name myweb --replicas 2 -p 80:80 nginx
+
+  ```
+  4xjxeusb0yd4kgr4qside0f6y
+  ```
+
+
+
+### Docker Upgrade
+
+- 이전 버전 삭제
+
+  ```
+  $ sudo yum remove docker \
+                    docker-client \
+                    docker-client-latest \
+                    docker-common \
+                    docker-latest \
+                    docker-latest-logrotate \
+                    docker-logrotate \
+                    docker-engine
+  ```
+
+- docker저장소 설정
+
+  ```
+  sudo yum-config-manager \
+      --add-repo \
+      https://download.docker.com/linux/centos/docker-ce.repo
+  ```
+
+- 설치
+
+  ```
+  sudo yum install docker-ce docker-ce-cli containerd.io
+  ```
+
+- 도커 재시작
+
+  ```
+  sudo systemctl start docker
+  ```
+
+- 도커 버전 확인
+
+  ```
+  docker version
+  ```
+
+
+
+
+
+
+
+
