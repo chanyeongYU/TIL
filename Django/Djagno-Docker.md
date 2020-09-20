@@ -85,7 +85,7 @@ CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
 #### 6. VirtualBox에서 포트포워딩
 
-​		![image-20200921000651812](C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200921000651812.png)
+​		![image-20200921000651812](./img/image-20200921000651812.png)
 
 
 
