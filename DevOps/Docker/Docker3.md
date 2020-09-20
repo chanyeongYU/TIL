@@ -54,7 +54,7 @@
 
 ### Docker 컨테이너 생명주기
 
-​	<img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200915100457505.png" alt="image-20200915100457505"/>
+​	<img src="..\..\img\image-20200915100457505.png" alt="image-20200915100457505"/>
 
 
 

@@ -748,4 +748,4 @@
 
 11. 호스트PC의 브라우저에서 `192.168.33.10/result.html`접속
 
-    <img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200910172324897.png" alt="image-20200910172324897" style="zoom:67%;" />
+    <img src="..\img\image-20200910172324897.png" alt="image-20200910172324897" style="zoom:67%;" />

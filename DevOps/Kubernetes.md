@@ -12,7 +12,7 @@
 
 ### K8s 구성
 
-​	![image-20200918225439851](C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200918225439851.png)
+​	![image-20200918225439851](..\img\image-20200918225439851.png)
 
 ##### Master Node
 

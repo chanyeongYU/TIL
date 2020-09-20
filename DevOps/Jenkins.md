@@ -47,7 +47,7 @@
     success
     ```
 
-   <img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200911145341234.png" alt="image-20200911145341234" style="zoom:67%;" />
+   <img src="..\img\image-20200911145341234.png" alt="image-20200911145341234" style="zoom:67%;" />
 
 ### Jenkins 접속
 

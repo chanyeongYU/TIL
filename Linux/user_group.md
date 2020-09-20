@@ -98,7 +98,7 @@
 
 ##### 파일 허가권
 
-​	![image-20200908104546461](C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200908104546461.png)
+​	![image-20200908104546461](..\img\image-20200908104546461.png)
 
 - read / write / execute
 

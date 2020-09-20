@@ -105,7 +105,7 @@
 
 - 데이터를 DB에  저장하고 관리해서 필요한 정보를 생성하는 컴퓨터 중심의 시스템
 
-   <img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200911001149247.png" alt="image-20200911001149247" style="zoom: 67%;" />
+   ​	<img src="..\img\image-20200911001149247.png" alt="image-20200911001149247" style="zoom: 67%;" />
 
 - 구성요소
 
@@ -116,7 +116,7 @@
 
 - 구성요소에 대한 담당자
 
-   <img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200911001544619.png" alt="image-20200911001544619" style="zoom:67%;" />
+   ​	<img src="..\img\image-20200911001544619.png" alt="image-20200911001544619" style="zoom:67%;" />
 
 
 
@@ -169,7 +169,9 @@
 
 - DB를 보는 관점에 따라 3개의 계층으로 분리
 
-   <img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200911002615093.png" alt="image-20200911002615093" style="zoom:67%;" />
+   <img src="..\img\image-20200911002615093.png" alt="image-20200911002615093" style="zoom:67%;" />
+
+  
 
   - **외부 스키마(Externel Schema)**
     - 개개인의 사용자가 보는 개인적 DB 스키마
@@ -219,13 +221,13 @@
 
 
 
- <img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200911005809956.png" alt="image-20200911005809956" style="zoom:80%;" />
+ <img src="..\img\image-20200911005809956.png" alt="image-20200911005809956" style="zoom:80%;" />
 
 
 
 #### 프로젝트 라이프사이클
 
- <img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200911010131049.png" alt="image-20200911010131049" style="zoom:80%;" />
+ <img src="..\img\image-20200911010131049.png" alt="image-20200911010131049" style="zoom:80%;" />
 
 
 
@@ -235,7 +237,7 @@
 
 - **현실 세계의 추상화된 반영**
 
-   <img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200911011039423.png" alt="image-20200911011039423" style="zoom:80%;" />
+    <img src="..\img\image-20200911011039423.png" alt="image-20200911011039423" style="zoom:80%;" />
 
 
 
@@ -261,7 +263,7 @@
   - 업무 프로세스에 따라 데이터가 어떤 영향을 받는지
   - Interaction
 
- <img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200911011719866.png" alt="image-20200911011719866" style="zoom:80%;" />\
+ <img src="..\img\image-20200911011719866.png" alt="image-20200911011719866" style="zoom:80%;" />\
 
 
 
@@ -306,7 +308,7 @@
 
 #### 데이터 모델링의 단수와 복수의 개념
 
-​	<img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200911012734004.png" alt="image-20200911012734004" style="zoom: 80%;" />
+​	<img src="..\img\image-20200911012734004.png" alt="image-20200911012734004" style="zoom: 80%;" />
 
 
 
@@ -318,11 +320,11 @@
 
 #### 데이터 모델링 표기법의 종류
 
-​	<img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200911013031765.png" alt="image-20200911013031765" style="zoom:80%;" />
+​	<img src="..\img\image-20200911013031765.png" alt="image-20200911013031765" style="zoom:80%;" />
 
 - **IE**(Crow's Foot, 정보공학 표기법)이 많이 쓰임
 
-  ​	<img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200911013744658.png" alt="image-20200911013744658" style="zoom: 80%;" />
+  ​	<img src="..\img\image-20200911013744658.png" alt="image-20200911013744658"  />
 
 - **Chen**
 

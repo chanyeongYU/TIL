@@ -46,11 +46,11 @@
 
 - Volume이 중요 요소
 
-  ​	<img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200909202758215.png" alt="image-20200909202758215" style="zoom: 67%;" />
+  ​	<img src="..\img\image-20200909202758215.png" alt="image-20200909202758215" style="zoom: 67%;" />
 
   
 
-​	<img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200909203032651.png" alt="image-20200909203032651" style="zoom:50%;" />
+​	<img src="..\img\image-20200909203032651.png" alt="image-20200909203032651" style="zoom:50%;" />
 
 - **Volume - 크기**
   - 일반적으로 수십 TB 또는 수십 PB 이상
@@ -83,7 +83,7 @@
 
 - **빅데이터 분석은 그 데이터를 사용하는 조직이 효율적으로 사용하고 새로운 기회를 발견하도록 도움을 줌**
 
- <img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200909205439502.png" alt="image-20200909205439502" style="zoom:67%;" />
+ <img src="..\img\image-20200909205439502.png" alt="image-20200909205439502" style="zoom:67%;" />
 
 - **비용 절감**
   - **하둡**과 같은 빅데이터 기술, 클라우드 기반 분석 기술이 결합시 상당한 비용 절감을 얻을 수 있음
@@ -180,7 +180,7 @@
 
 ### Enabling Technology: Virtualization
 
-​	<img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200910003326508.png" alt="image-20200910003326508" style="zoom:67%;" />
+​	<img src="..\img\image-20200910003326508.png" alt="image-20200910003326508" style="zoom:67%;" />
 
 - Hypervisor 위에 새로운 가상 PC를 만들 수 있음
 
@@ -188,7 +188,7 @@
 
 - #### Hypervisor-Based Virtualization
 
-  ​	<img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200910003636198.png" alt="image-20200910003636198" style="zoom:67%;" />
+  ​	<img src="..\img\image-20200910003636198.png" alt="image-20200910003636198" style="zoom:67%;" />
 
   - 가상머신을 관리하는 별도의 SW
   - **하나의 물리적인 자원에서 구동할 수 있는 운영체제 종류가 다양해짐**
@@ -204,7 +204,7 @@
 
 - #### Container-Based Virtualization
 
-  ​	<img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200910004406042.png" alt="image-20200910004406042" style="zoom:67%;" />
+  ​	<img src="..\img\image-20200910004406042.png" alt="image-20200910004406042" style="zoom:67%;" />
 
   - Guest OS가 사라짐
 
@@ -269,7 +269,7 @@
 
 
 
-​	<img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200910012700362.png" alt="image-20200910012700362" style="zoom:67%;" />
+​	<img src="..\img\image-20200910012700362.png" alt="image-20200910012700362" style="zoom:67%;" />
 
 
 
@@ -358,7 +358,7 @@
 
 - Scale Out하면서 용량은 증가하지만 Bandwidth가 떨러짐
 
-​	<img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200912212114514.png" alt="image-20200912212114514" style="zoom:67%;" />
+​	<img src="..\img\image-20200912212114514.png" alt="image-20200912212114514" style="zoom:67%;" />
 
 
 
@@ -492,7 +492,7 @@
 
 ### Hadoop Ecosystem
 
-​	<img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200912222720097.png" alt="image-20200912222720097" style="zoom:80%;" />\
+​	<img src="..\img\image-20200912222720097.png" alt="image-20200912222720097" style="zoom:80%;" />\
 
 
 

@@ -678,7 +678,7 @@ CMD ["nginx", "-g", "daemon off;"]
 
 8. 도커 러브에 로그인후 등록된 이미지 확인
 
-   ​	<img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200911132806521.png" alt="image-20200911132806521" style="zoom:80%;" />
+   ​	<img src="..\..\img\image-20200911132806521.png" alt="image-20200911132806521" style="zoom:80%;" />
 
    
 
@@ -809,4 +809,4 @@ Removing root_web_1 ... done
 
 
 
-![image-20200911141517984](C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200911141517984.png)
+![image-20200911141517984](..\..\img\image-20200911141517984.png)

@@ -60,7 +60,7 @@
 
 ## Roots of Cloud Computing (클라우드 컴퓨팅의 뿌리)
 
-​	<img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200913025406714.png" alt="image-20200913025406714" style="zoom:80%;" />
+​	<img src="..\img\image-20200913025406714.png" alt="image-20200913025406714" style="zoom:80%;" />
 
 - 클라우드 컴퓨팅은 혼자 갑자기 나타난 것이 아니라 다양한 분야의 기술이 발전되고 
 
@@ -141,7 +141,7 @@
 
 #### Hardware(Hardware Virtualization, 가상화) :star:
 
-​	<img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200913144411210.png" alt="image-20200913144411210" style="zoom:67%;" />
+​	<img src="..\img\image-20200913144411210.png" alt="image-20200913144411210" style="zoom:67%;" />
 
 - 클라우드 서비스는 수많은 컴퓨터로 구성된 대규모의 데이터 센터에서 제공됨
   - 다양한 형태의 시스템을 지원해야함
@@ -205,7 +205,7 @@
 
 ## Layers and Types of Clouds
 
-​	<img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200917011523965.png" alt="image-20200917011523965" style="zoom:67%;" />
+​	<img src="..\img\image-20200917011523965.png" alt="image-20200917011523965" style="zoom:67%;" />
 
 #### Infrastructure as a Service
 
@@ -248,7 +248,7 @@
 
 ## Deployment Models
 
- <img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200917013613854.png" alt="image-20200917013613854" style="zoom:67%;" />
+ <img src="..\img\image-20200917013613854.png" alt="image-20200917013613854" style="zoom:67%;" />
 
 
 
@@ -335,17 +335,17 @@
 
 ## Top Cloud Providers 2019
 
- <img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200917023109802.png" alt="image-20200917023109802" style="zoom: 67%;" />
+ <img src="..\img\image-20200917023109802.png" alt="image-20200917023109802" style="zoom: 67%;" />
 
 
 
 ## The Future of a Data Center?
 
-​	<img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200917023235703.png" alt="image-20200917023235703" style="zoom: 50%;" />
+​	<img src="..\img\image-20200917023235703.png" alt="image-20200917023235703" style="zoom: 50%;" />
 
 
 
-​	<img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200917023622515.png" alt="image-20200917023622515" style="zoom: 70%;" />
+​	<img src="..\img\image-20200917023622515.png" alt="image-20200917023622515" style="zoom: 70%;" />
 
 - 컴퓨팅 자원을 효율적으로 공유햣  및 관리
 

@@ -109,7 +109,7 @@
 
 ### Hadoop Ecosystem
 
-​	<img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200912222720097.png" alt="image-20200912222720097" style="zoom:80%;" />\
+​	<img src="..\img\image-20200912222720097.png" alt="image-20200912222720097" style="zoom:80%;" />\
 
 
 

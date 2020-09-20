@@ -44,7 +44,7 @@
 
   - `dpkg`는 `.deb`를 미리 다운로드한 후 설치해야 함
 
-    ![image-20200908154853978](C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200908154853978.png)	
+    ![image-20200908154853978](..\img\image-20200908154853978.png)	
 
 
 
