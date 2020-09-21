@@ -255,3 +255,258 @@ FIELDS:
      https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
 ```
 
+
+
+## Replica Set
+
+- 참고자료
+  - https://kubernetes.io/ko/docs/concepts/workloads/controllers/replicaset/
+
+
+
+#### pods 삭제
+
+- vagrant@ubuntu:~$ kubectl get pods
+
+  ```
+  NAME           READY   STATUS    RESTARTS   AGE
+  my-nginx-pod   2/2     Running   4          2d17h
+  ```
+
+  - 두 개의 컨테이너가 실행중
+    - my-nginx-container
+    - ubuntu-sidecar-container
+
+- vagrant@ubuntu:~/kube01$ kubectl delete -f nginx-pod-with-ubuntu.yml
+
+  또는
+
+- vagrant@ubuntu:~/kube01$ kubectl delete pods my-nginx-pod
+
+- vagrant@ubuntu:~/kube01$ kubectl get pods
+
+  ```
+  No resources found in default namespace.
+  ```
+
+
+
+#### pods 생성
+
+- vagrant@ubuntu:~/kube01$ kubectl apply -f nginx-pod-with-ubuntu.yml
+
+- vagrant@ubuntu:~/kube01$ kubectl get pods
+
+  ```
+  NAME           READY   STATUS    RESTARTS   AGE
+  my-nginx-pod   2/2     Running   0          31s
+  ```
+
+  
+
+#### **레플리카셋 정의**
+
+- vagrant@ubuntu:~/kub01$ vim replicaset-nginx.yml
+
+  ```yaml
+  apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+          name: replicaset-nginx
+  spec:
+          replicas: 3			⇐ 유지해야 하는 파드 개수
+          selector:			⇐ 획득 가능한 파드를 식별하는 방법
+                  matchLabels:
+                          app: my-nginx-pods-label
+          template:			⇐ 신규 생성되는 파드에 대한 데이터를 명시
+                  metadata:
+                          name: my-nginx-pod
+                          labels:
+                                  app: my-nginx-pods-label
+                  spec:
+                          containers:
+                                  - name: my-nginx-container
+                                    image: nginx:latest
+                                    ports:
+                                            - containerPort: 80
+                                              protocol: TCP
+  ```
+
+
+
+#### 레플리카셋 생성
+
+- vagrant@ubuntu:~/kube01$ kubectl apply -f replicaset-nginx.yml
+
+- vagrant@ubuntu:~/kube01$ kubectl get pods
+
+  ```
+  NAME                     READY   STATUS    RESTARTS   AGE
+  replicaset-nginx-86xg5   1/1     Running   0          23s
+  replicaset-nginx-8fzh5   1/1     Running   0          23s
+  replicaset-nginx-p9m2w   1/1     Running   0          23s
+  ```
+
+  
+
+#### 레플리카셋 삭제
+
+- vagrant@ubuntu:~/kub01$ kubectl delete replicaset replicaset-nginx
+
+- vagrant@ubuntu:~/kub01$ kubectl get pods
+
+  - pod도 함께 삭제
+
+  ```
+  No resources found in default namespace.
+  ```
+
+
+
+#### **레플리카셋은 라벨 셀렉터로 정의한 파드가 일정 개수가 되도록 유지**
+
+
+
+
+
+## Deployment
+
+- 레플리카셋, 파드의 배포를 관리
+  - 애플리케이션의 업데이트와 배포를 쉽게 하기 위해 만든 개념(객체)
+
+
+
+#### 사용하는 이유
+
+- 디플로이먼트는 컨테이너 애플리케이션을 배포하고 관리하는 역할을 담당
+- 애플리케이션을 업데이트 할 때 레플리카셋의 변경 사항을 저장하는 리비전을 남겨 롤백 가능하게 해 주고, 무중단 서비스를 위한 포드의 롤링 업데이트 전략을 지정할 있음
+  - **롤백**
+  - **이미지 변경**
+
+
+
+## Service
+
+- 쿠버네티스 클러스터 안에서 파드의 집합에 대한 경로나 서비스 디스커버리를 제공하는 리소스
+
+
+
+#### Type
+
+- 서비스 타입에 따라 포드에 접근하는 방법이 달라짐
+  - **ClusterIP 타입**
+    - 쿠버네티스 내부에서만 포들에 접근할 때 사용
+    - 외부로 포드를 노출하지 않기 때문에 쿠버네티스 클러스터 내부에서만 사용되는 포드에 적합
+  - **NodePort 타입**
+    - 포드에 접근할 수 있는 포트를 클러스터의 모드 노드에 동일하게 개방
+    - 외부에서 포드에 접근할 수 있는 서비스 타입
+    - 접근할 수 있는 포트는 랜덤으로 정해지지만, 특정 포트로 접근하도록 설정할 수 있음
+  - **LoadBalancer 타입**
+    - 클라우드 플랫폼에서 제공하는 로드 밸러서를 동적으로 프로비저닝해서 포드에 연결
+    - 외부에서 포드에 접근할 수 있는 서비스 타입
+    - 일반적으로 AWS, GCP, … 등과 같은 클라우드 플랫폼 환경에서 사용
+
+
+
+#### Deployment 생성
+
+##### 모든 리소스 삭제
+
+- vgrant@ubuntu:~/kube01$ vim deployment-hostname.yml
+
+  ```yaml
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+          name: hostname-deployment
+  spec:
+          replicas: 3
+          selector:
+                  matchLabels:
+                          app: webserver
+          template:
+                  metadata:
+                          name: my-webserver
+                          labels:
+                                  app: webserver
+                  spec:
+                          containers:
+                                  - name: my-webserver
+                                    image: alicek106/rr-test:echo-hostname
+                                    ports:
+                                            - containerPort: 80
+  ```
+
+- vagrant@ubuntu:~/kube01$ kubectl apply -f deployment-hostname.yml
+
+- vagrant@ubuntu:~/kube01$ kubectl get pods
+
+  ```
+  NAME                                   READY   STATUS              RESTARTS   AGE
+  hostname-deployment-7dfd748479-brkxl   0/1     ContainerCreating   0          6s
+  hostname-deployment-7dfd748479-g2cj5   0/1     ContainerCreating   0          6s
+  hostname-deployment-7dfd748479-p7dh6   0/1     ContainerCreating   0          6s
+  ```
+
+- **o wide 옵션을 이용해서 각 파드에 할당된 IP를 확인 ⇒** **-o, --output='' : 출력 포맷을 지정**
+
+  - vagrant@ubuntu:~/kube01$ kubectl get pods -o wide
+
+
+
+##### 하나의 pod를 임시로 생성 후 deployment-hostname으로 생성된 pod로 http 요청 전달
+
+- vagrant@ubuntu:~/kube01$ kubectl run -it --rm debug --image=alicek106/ubuntu:curl --restart=Never curl 172.18.0.3 | grep Hello
+
+  ```html
+  <p>Hello,  hostname-deployment-7dfd748479-g2cj5</p>     </blockquote>
+  ```
+
+
+
+
+
+#### NodePort 타입의 서비스 → 서비스를 이용해 파드를 외부에 노출이 가능
+
+- **매니페스트 파일을 작성**
+
+  - vagrant@ubuntu:~/kube01$ vi hostname-svc-nodeport.yml
+
+    ```yaml
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: hostname-svc-nodeport
+    spec:
+      ports:
+        - name: web-port
+          port: 8080
+          targetPort: 80
+      selector:
+        app: webserver
+      type: NodePort
+    ```
+
+- **서비스 생성 및 확인**
+
+  - vagrant@ubuntu:~/kube01$ kubectl apply -f hostname-svc-nodeport.yml
+
+  - vagrant@ubuntu:~/kube01$ kubectl get services
+
+    ```
+    NAME                    TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+    hostname-svc-nodeport   NodePort    10.103.63.99   <none>        8080:31582/TCP   7s
+    kubernetes              ClusterIP   10.96.0.1      <none>        443/TCP          3d2h
+    ```
+
+  - vagrant@ubuntu:~/kube01$ kubectl get nodes -o wide
+
+    ```
+    NAME       STATUS   ROLES    AGE    VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE           KERNEL-VERSION       CONTAINER-RUNTIME
+    minikube   Ready    master   3d2h   v1.19.0   172.17.0.2    <none>        Ubuntu 20.04 LTS   4.15.0-117-generic   docker://19.3.8
+    ```
+
+- **노드(172.17.0.2)에서 서비스 포토(31582)로 접근**
+
+  - vagrant@ubuntu:~/kube01$ curl http://172.17.0.2:31582  -s| grep Hello
+
