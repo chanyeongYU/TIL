@@ -110,3 +110,21 @@ ALLOWED_HOSTS = [
 
 
 
+# Django - Docker Compose
+
+#### 1. Docker Compose 설치
+
+- `$ sudo curl -L "https://github.com/docker/compose/releases/download/1.27.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`
+
+- `$ sudo chmod +x /usr/local/bin/docker-compose`
+
+  - 실행 권한 적용
+
+- `$ docker-compose --version`
+
+  ```
+  docker-compose version 1.27.3, build 4092ae5d
+  ```
+
+  
+
