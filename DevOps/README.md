@@ -2,6 +2,6 @@
 
 - Ansible
 - Vagrant
-- Serverspec
 - Docker
 - Jenkins
+- Kubernetes
