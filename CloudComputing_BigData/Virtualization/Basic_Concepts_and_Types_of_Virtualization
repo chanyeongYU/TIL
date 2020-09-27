@@ -9,7 +9,7 @@
 
 ### Hypervisor-Based Virtualization
 
-  	<img src="..\img\image-20200910003636198.png" alt="image-20200910003636198" style="zoom:67%;" />
+  	<img src="..\..\img\image-20200910003636198.png" alt="image-20200910003636198" style="zoom:67%;" />
 
   - 가상머신을 관리하는 별도의 SW
   - **하나의 물리적인 자원에서 구동할 수 있는 운영체제 종류가 다양해짐**
@@ -27,7 +27,7 @@
 
 ### Container-Based Virtualization
 
-<img src="..\img\image-20200910004406042.png" alt="image-20200910004406042" style="zoom:67%;" />
+​	<img src="..\..\img\image-20200910004406042.png" alt="image-20200910004406042" style="zoom:67%;" />
 
   - Guest OS가 사라짐
   - **Host OS의 Kernel 기능을 공유**
@@ -50,7 +50,7 @@
 
 - 하나의 장치를 여러 개처럼 동작(**Partitioning**)시키거나, 여러 개의 장치를 묶어 마치 하나의 장치인 것처럼 (**Aggregation**)사용자에게 제공
 
-  ​	<img src="img\3.png" alt="image-20200921011451392" style="zoom: 80%;" />
+  ​	<img src="..\..\img\3.png" alt="image-20200921011451392" style="zoom: 80%;" />
 
   - **Partitioning**
     - 일반적인 가상화
@@ -125,7 +125,7 @@
 
 #### Application Virtualization
 
-​	<img src="img\4.png" alt="image-20200927142332545" style="zoom: 80%;" />
+​	<img src="..\..\img\4.png" alt="image-20200927142332545" style="zoom: 80%;" />
 
 - 해당 응용프로그램이 실행되는 운영체제(OS)로부터 응용 SW를 캡슐화 하는 기법
 
@@ -135,7 +135,7 @@
 
 - **Application Virtualization는 어플리케이션 실행 자체가 클라이언트 쪽에서 실행**
 
-  ​	<img src="img\5.png" alt="image-20200927143119879" style="zoom:80%;" />
+  ​	<img src="..\..\img\5.png" alt="image-20200927143119879" style="zoom:80%;" />
 
 
 
