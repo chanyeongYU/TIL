@@ -1,7 +1,7 @@
 # Server Virtualization
 
 - **Hypervisor-based Virtualization**
-- **Container-based Virtualization**
+- Container-based Virtualization
 
 
 
@@ -66,6 +66,8 @@
 - 가상화 하는 방식에 따라서 전가상화와 반가상화로 구분
   - I/O 접근을 어디까지 가상화 할 것인가?
 - **성능 측면(I/O에 대한 병목현상)의 이유로 반가상화 기술 출현**
+  - 컴퓨팅 성능의 순선
+    - Native > 반가상화 > 전가상화> 에뮬레이션
 
 
 
@@ -116,6 +118,12 @@
   - **Control Domain (or Domain 0)**
     - **Xen에서 항상 실행되는 특별한 가상머신**
       - **I/O에 대한 모든 접근을 다루는 특별한 권한을 가짐**
+  
+  
+  
+  <img src="..\..\img\image-20201008000216013.png" alt="image-20201008000216013" style="zoom:80%;" />
+  
+  
 
 
 

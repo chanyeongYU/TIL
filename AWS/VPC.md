@@ -1,4 +1,6 @@
-## VPC(Virtual Private Cloud)
+## Amazon VPC(Virtual Private Cloud)
+
+- **Amazon Virtual Private Cloud**
 
 - 네트워크 계층
 - EC2 인스턴스를 비롯한 여러 AWS 서비스의 리소스를 담을 수 있는 가상 네트워크
