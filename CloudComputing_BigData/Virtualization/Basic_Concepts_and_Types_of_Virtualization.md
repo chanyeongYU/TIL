@@ -50,7 +50,7 @@
 
 - 하나의 장치를 여러 개처럼 동작(**Partitioning**)시키거나, 여러 개의 장치를 묶어 마치 하나의 장치인 것처럼 (**Aggregation**)사용자에게 제공
 
-  ​	<img src="..\..\img\3.png" alt="3" style="zoom: 80%;" />
+  ​	<img src="..\..\img\3.PNG" alt="3" style="zoom: 80%;" />
 
   - **Partitioning**
     - 일반적인 가상화
@@ -125,7 +125,7 @@
 
 #### Application Virtualization
 
-​	<img src="..\..\img\4.png" alt="4" style="zoom: 80%;" />
+​	<img src="..\..\img\4.PNG" alt="4" style="zoom: 80%;" />
 
 - 해당 응용프로그램이 실행되는 운영체제(OS)로부터 응용 SW를 캡슐화 하는 기법
 
@@ -135,7 +135,7 @@
 
 - **Application Virtualization는 어플리케이션 실행 자체가 클라이언트 쪽에서 실행**
 
-  ​	<img src="..\..\img\5.png" alt="5" style="zoom:80%;" />
+  ​	<img src="..\..\img\5.PNG" alt="5" style="zoom:80%;" />
 
 
 
