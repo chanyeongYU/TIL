@@ -61,7 +61,7 @@
 
 #### Full Virtualization(전가상화) vs. Paravirtualization(반가상화)
 
-​	<img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20201007223215584.png" alt="image-20201007223215584" style="zoom:80%;" />
+​	<img src="..\..\img\image-20201011220648023.png" alt="image-20201011220648023" style="zoom:80%;" />
 
 - 가상화 하는 방식에 따라서 전가상화와 반가상화로 구분
   - I/O 접근을 어디까지 가상화 할 것인가?
