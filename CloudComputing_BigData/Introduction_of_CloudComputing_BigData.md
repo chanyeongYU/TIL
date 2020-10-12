@@ -1,7 +1,5 @@
 # Introduction to Big Data & Cloud Computing
 
-- 명지대 컴퓨터공학과 김직수 교수님 *클라우드 컴퓨팅*  강의 내용
-
 
 
 ## Big Data
@@ -314,7 +312,7 @@
 
       - Shared Work Queues
 
-         <img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20200912210158659.png" alt="image-20200912210158659" style="zoom:67%;" />
+         <img src="..\img\image-20200912210158659.png" alt="image-20200912210158659" style="zoom:67%;" />
 
 
 
