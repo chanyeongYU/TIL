@@ -310,8 +310,8 @@ echo "Hello World!"
   ubuntu              16.04               4b22027ede29        3 weeks ago          127MB
   golang              1.9                 ef89ef5c42a9        2 years ago          750MB
   gihyodocker/echo    latest              3dbbae6eb30d        2 years ago          733MB
-  ```
-  
+```
+
 - 컨테이너 실행
 
   - vagrant@xenial64:~/chap02$ `docker container run example/echo:latest`
