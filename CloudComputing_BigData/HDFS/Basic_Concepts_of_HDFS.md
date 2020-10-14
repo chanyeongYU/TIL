@@ -6,7 +6,7 @@
 
 
 
-#### Roots of Hadoop
+### Roots of Hadoop
 
 - 두 개의 논문
   - The Google File System
@@ -14,7 +14,7 @@
 
 
 
-#### HDFS Paper
+### HDFS Paper
 
 - Yahoo에서 "The Hadoop Distributed File System" 논문 작성(2010)
 
@@ -27,7 +27,7 @@
 
 
 
-#### Hadoop Project
+### Hadoop Project
 
 - **분산 파일 시스템**을 제공(HDFS) - Store
 - 대규모의 데이터셋을 변환하고 분석하는 **MapReduce** paradigm을 사용하는 프레임워크 제공 - Processing
@@ -37,13 +37,13 @@
 
 
 
-#### Hadoop Ecosystem
+### Hadoop Ecosystem
 
 ​	<img src="..\..\img\image-20200912222720097.png" alt="image-20200912222720097" style="zoom:80%;" />
 
 
 
-#### Why Distributed File Systems?
+### Why Distributed File Systems?
 
 - 단일한 물리 머신의 저장용량은 한계가 있음
   - 대규모의 데이터를 분할(Partition)해서 여러 대의 머신에 저장
@@ -56,7 +56,7 @@
 
 
 
-#### The Design of HDFS
+### The Design of HDFS
 
 - For storing **very large files** with **streaming data access** patterns, running on clusters of **commodity hardware**(범용 하드웨어의 클러스터에서 실행하고 스트리밍 데이터 액세스 패턴이 있는 대용량 파일 저장)
   - Streaming data access
@@ -85,7 +85,7 @@
 
 
 
-#### HDFS Architecture
+### HDFS Architecture
 
 ​	<img src="..\..\img\image-20201013024353205.png" alt="image-20201013024353205" style="zoom:80%;" />
 
@@ -95,7 +95,7 @@
   - 모든 서버들은 완전하게 연결
   - 서로 간 TCP 기반 통신
 
-##### HDFS Blocks
+#### HDFS Blocks
 
 - 데이터를 한번 읽고 쓸 때의 단위(Unit)
   - 일반적인 파일시스템보다는 큰 사이즈인 64MB
@@ -112,7 +112,7 @@
 
 
 
-##### NameNode
+#### NameNode
 
 - HDFS 아키텍쳐에서 Master 역할을 수행
 - Namespace Tree와 Metadata 관리
@@ -124,7 +124,7 @@
 
 
 
-##### DataNode
+#### DataNode
 
 - HDFS 아키텍쳐에서 Slave 역할을 수행
 - 각각의 Block 복제본을 Datanode에 저장
@@ -142,7 +142,7 @@
 
 
 
-##### Maintaining the overall system integrity
+#### Maintaining the overall system integrity
 
 - Datanode는 Namenode에게 주기적으로 **Heartbeats** 메시지 전송
   - Default Time은 3초
@@ -163,13 +163,13 @@
 
 
 
-##### HDFS Client
+#### HDFS Client
 
 - NameNode 및 DataNode와 통신하여 사용자를 대신하여 파일 시스템에 접근
 
 - **Reading a File**
 
-   <img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20201014211953330.png" alt="image-20201014211953330" style="zoom:80%;" />
+   <img src="..\..\img\image-20201014211953330.png" alt="image-20201014211953330" style="zoom:80%;" />
 
   - **클라이언트가 데이터노드에 직접 연락하여 데이터를 검색하고, 이름노드에 의해 각 블록에 대한 최상(Client와 가까이 있는)의 데이터노드로 안내**
     - **HDFS가 다수의 동시 클라이언트로 확장 가능하도록 설계됨**
@@ -177,12 +177,11 @@
 
   1. NameNode와 통신해서 Read하려는 Block들의 복제본이 있는 DataNode 목록을 요청
   2. DataNode에 **직접(Directly)** 연락하여 원하는 Block의 전송을 요청
-
-
+  3. 
 
 - **Writing a File**
 
-  ​	<img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20201014212026781.png" alt="image-20201014212026781" style="zoom:80%;" />
+  ​	<img src="..\..\img\image-20201014212026781.png" alt="image-20201014212026781" style="zoom:80%;" />
 
   - DataNode 목록이 PipeLine을 형성
     - 동시 다발적인 요청을 처리하기위해 Namenode가 Main Memory에 Metadata저장
@@ -191,3 +190,75 @@
   2. Node간 **PipeLine** 구성 및 데이터 전송
   3. 첫 번째 Block을 다 쓰면 다음 Block의 복제본이 있는 DataNode 목록을 요청
 
+
+
+### File I/O and Replica Management
+
+- Dealing with the integrity of the data
+
+  - HDFS 각각의 데이터 Block에 대해 **Checksum**을 만들고 저장
+  - 클라이언트가 데이터를 읽는동안 Checksum 확인
+    1. 데이터가 손상된(Corrupted) 경우 클라이언트는 NameNode에 알림
+    2. 다른 DataNode로부터 다른 복제본을 가져옴
+
+- Reading a file based on the **proximity(근접성)**
+
+  - 클라이언트가 읽을 파일을 열때 NameNode로 부터 Block의 목록과 각각의 위치 정보를 가져옴
+  - 클라이언트는 가장 근접한 Block부터 읽도록 시도
+
+- Network Topology and Hadoop
+
+  - 데이터와 근접하다는 것을 어떻게 알 것인가?
+
+    - 노드 간의 Bandwidth를 측정하는 것은 실제로 어렵기 때문에 사용하지 못함
+
+  - **Network를 트리로 표현하고, 공통 조상으로 가는 거리의 합으로 표현**
+
+     <img src="..\..\img\image-20201014221604138.png" alt="image-20201014221604138" style="zoom:80%;" />
+
+    - 자기 자신과의 거리 = 0
+    - Node1.1 과 Node1.2의 거리 = 2
+    - Node1.1 과 Node3.1의 거리 = 4
+
+     <img src="..\..\img\image-20201014223630535.png" alt="image-20201014223630535" style="zoom:80%;" />
+
+    ​	*(Haadoop은 데이터센터간의 통신은 적합하지 않음)*
+
+- Block Placement
+
+   <img src="..\..\img\image-20201015010843526.png" alt="image-20201015010843526" style="zoom:80%;" />
+
+  - 대규모의 클러스터는 모든 노드를  동등한 레벨(Flat Topology)로 연결하는 것은 실용적이지 않음
+
+    -> **노드를 여러 Rack으로 분산**
+
+    - 관리자가 노드의 주소를 주면 어느 Rack에 있는지 반환하는 스크립트를 설정
+    - **어떤 Block이라 하더라도 하나의 데이터 노드가 두개 이상의 똑같은 복제본을 가질 수 없음**
+    - **하나의 Rack에 세개 이상의 Block 복제본을 포함할 수 없음**
+      - 두 개의 복제본이 하나의 Rack이 있다면 다른 하나의 복제본은 다른 Rack에 포함되어 있어야 함
+        - Rack안에 두 개는 있어야 노드 하나가 다운 되었을 때 다른 하나의 가까운 노드 허나를 사용
+
+    :point_right: 장애 복구 측면, 성능 측면에서 장점
+
+- Replication management
+
+  - Namenode는 Datanode로부터 Block Report를 받았을 때 과소 또는 과다 복제되었는지 감지
+
+- Balancer
+
+  - 모든 데이터가 Datanode에 항상 균등하게 배치되지 않음
+    - 새로운 노드가 생성되거나 기존 노드가 사라졌을 때 등..
+  - Balancer는 HDFS의 디스크 공간 사용량 균형을 조정하는 Tool
+
+- Block Scanner
+
+  - Datanode가 Block 복제본의 Checksum이 유효한지 주기적으로 검사
+
+- Graceful leaving of a DataNode
+
+  - 한 Datanode가 **Decommissioning(폐기중)**으로 표시되면, 그 노드는 새로운 데이터를 추가로 저장하지 않음
+    - 읽기 요청은 계속 지원
+  - Decommissioning Process
+    1. Namenode가 해당 Datanode의 Block을 다른 Datanode로 복제
+    2. 모든 Block이 복제되면 완전하게 제거
+    3. 데이터 가용성(Data Availability)을 해치지 않고 클러스터에서 안전하게 제거
