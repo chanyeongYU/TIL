@@ -27,7 +27,7 @@
 
 #### Main Characteristics od Cloud Computing
 
-- **Pay per User**
+- **Pay per Use**
   - 사용한 만큼 돈을 지불
   - 사용한만큼 측정(metering)
 - **Elastic Capacity**
@@ -128,14 +128,14 @@
 
   - **문제점**
     - QoS보장이 어려움
-      - Lack of Performancs Isolation
+      - Lack of Performance Isolation
         - 한 사용자의 액티비티를 제어하기 힘듦
         - 다른 유저의 사용에도 영향을 끼침
-        - 시간 제약이 있는 어플리케이션에 맞지않음
+        - 시간 제약이 있는 어플리케이션에 맞지 않음
     - a Portability Barrier
       - 다양한 SW를 지원하는게 어려움
       - 특정 환경을 설치하려면 각각의 Admin에 따로 설치해야함
-    - 과헉적인 가치는 컸지만, 상업적으로는 부족했음
+    - 과학적인 가치는 컸지만, 상업적으로는 부족했음
 
 
 
@@ -148,7 +148,7 @@
   - **가상화 기술(Hardware Virtualization)이 가능하도록 도와줌**
 - **Portability Barrier 문제점을 해결할 수 있음**
 
-- **물리적인 하나의 플랫폼에서 다양한 형태의 운영체제와 SW stack을 실행할 수 있도록 지원**
+- **물리적인 하나의 플랫폼에서 다양한 형태의 운영체제와 SW Stack을 실행할 수 있도록 지원**
 
 - **VMM(Virtual Machine Monitor)** Called a **Hypervisor**
   - 물리적인 HW와 각각의 Guest OS와 통신, 액세스를 중재

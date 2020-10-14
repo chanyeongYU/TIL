@@ -119,11 +119,11 @@
 - **Platform as Service(Paas)**
 
   - 서비스를 개발할 수 있는 안정적인 환경(Platform)과 응용프로그램을 개발 할 수 있는 **API까지 제공**하는 형태
-  - Take care od Maintenance, Upgrades..
+  - Take care of Maintenance, Upgrades..
   - is what **Developers** use
   - Azure
     - Windows Azure
-    - SQL Azure
+    - Azure SQL
     - .NET
 
 - **Infrastructure as Service(Iaas)**
