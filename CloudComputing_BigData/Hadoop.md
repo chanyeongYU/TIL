@@ -44,7 +44,7 @@
 
 - 오픈소스 프로젝트이므로 비용에대한 부담이 적음
 - **Commodity HW** (x86CPU x Linux)
-- **Scale Out** 아케텍쳐
+- **Scale Out** 아키텍쳐
 - 데이터 유실이나 장애 복구 가능 (**데이터 복제**)
 - 여러 대의 서버에 데이터를 분산 저장하고, 데이터가 저장된 각 서버에서 동시에 데이터를 처리 (**Data Locality**)
 
@@ -55,7 +55,7 @@
 - RDBMS를 대체하는 것이 아님
   - 하둡은 RDBMS와 상호 보완적인 특성을 가짐
     - ETL(Extraction, Transformation, Loading)과정의 효율적인 구현
-  - Hadoop은 신속한 데이터처리, 즉 트랜잭션이 매우 중요한 데이터를 처리하는대 부적함
+  - Hadoop은 신속한 데이터처리, 즉 트랜잭션이 매우 중요한 데이터를 처리하는데  부적함
 - 하둡은 NoSQL?
   - 하둡 플랫폼 구성 요소 중의 하나인 HBase를 통해 NoSQL 기능을 제공하기는 함
   - NoSQL
@@ -70,8 +70,8 @@
   - 고가용성은 99.999% 상태의 가용을 지원
     - 1년 중 30분 제외하고 서비스가 가능한 수치
   - Name Node의 중앙집중적인 메타데이터 관리
-    - **Single point od failure & contention**
-      - 하둡의 Master-Slave 패턴 사용함으로써 고질적인 문제점
+    - **Single point of failure & contention**
+      - Master-Slave 패턴 사용하기 때문에 발생하는 고질적인 문제점
       - 단일 고장점
       - 한곳에만 집중되는 것
 - **File Namespace 제한**

@@ -177,7 +177,9 @@
 
   1. NameNode와 통신해서 Read하려는 Block들의 복제본이 있는 DataNode 목록을 요청
   2. DataNode에 **직접(Directly)** 연락하여 원하는 Block의 전송을 요청
-  3. 
+  
+
+
 
 - **Writing a File**
 
@@ -203,7 +205,7 @@
 
 - Reading a file based on the **proximity(근접성)**
 
-  - 클라이언트가 읽을 파일을 열때 NameNode로 부터 Block의 목록과 각각의 위치 정보를 가져옴
+  - 클라이언트가 읽을 파일을 열 때 NameNode로 부터 Block의 목록과 각각의 위치 정보를 가져옴
   - 클라이언트는 가장 근접한 Block부터 읽도록 시도
 
 - Network Topology and Hadoop
@@ -222,7 +224,7 @@
 
      <img src="..\..\img\image-20201014223630535.png" alt="image-20201014223630535" style="zoom:80%;" />
 
-    ​	*(Haadoop은 데이터센터간의 통신은 적합하지 않음)*
+    ​	*(Haadoop은 데이터센터 간의 통신은 적합하지 않음)*
 
 - Block Placement
 
@@ -236,7 +238,7 @@
     - **어떤 Block이라 하더라도 하나의 데이터 노드가 두개 이상의 똑같은 복제본을 가질 수 없음**
     - **하나의 Rack에 세개 이상의 Block 복제본을 포함할 수 없음**
       - 두 개의 복제본이 하나의 Rack이 있다면 다른 하나의 복제본은 다른 Rack에 포함되어 있어야 함
-        - Rack안에 두 개는 있어야 노드 하나가 다운 되었을 때 다른 하나의 가까운 노드 허나를 사용
+        - Rack안에 두 개는 있어야 노드 하나가 다운 되었을 때 다른 하나의 가까운 노드 하나를 사용
 
     :point_right: 장애 복구 측면, 성능 측면에서 장점
 
