@@ -41,7 +41,7 @@
 
   - Active중인 Namenode가 고장나면 Standby된 Namenode가 빠른 시간안에 서비스를 계속 수행
 
-     <img src="..\..\img\image-20201015023923968.png" alt="image-20201015023923968" style="zoom:80%;" />
+     ​	<img src="..\..\img\image-20201015023923968.png" alt="image-20201015023923968" style="zoom:80%;" />
 
     - Active-Standby 두 Namenode가 Shared Storage 형태로 공유
     - Datanode는 Block Report를 두 Namenode에 전송
