@@ -255,13 +255,28 @@
 ##### 객체 ACL변경 권한 생성
 
 - Role(lambda-s3-execution-role) -> 인라인 정책 추가
+  - 정책 이름: s3-acl-policy
   - 서비스: S3
   - 작업: PutObjectAcl
   - 모든 리소스
 
 
 
-##### video-upload 버킷에 동영상 파일을 추가하면 “System preset: Web” 형식으로 변형된 동영상을 생성해서 video-transcoded 버킷에 저장합니다. 
+##### 웹사이트 생성
+
+- `mkdir 24-hour-video && cd 24-hour-video`
+- `npm init -y`
+- `npm install local-web-server --save-dev`
+- http://www.initializr.com/ 에서 부트스트랩 버전 UI 다운 후 작업 디렉토리에 압축 해제
+
+
+
+##### 버킷(serverless-video-transcoded-chan) public접근 허용
+
+- serverless-video-upload-chan에서 파일 이름 을 바꾸면 serverless-video-transcoded-chan에 새로운 파일 생성
+  - 새로운 파일은 접근 가능
+
+
 
 ##### 사용자 웹 페이지를 만들고 auth0.com과 연동하여 SNS 로그인 기능을 구현합니다. 
 
