@@ -1,3 +1,5 @@
+
+
 ##### 유저 생성
 
 - user name: lambda-upload
@@ -262,15 +264,6 @@
 
 
 
-##### 웹사이트 생성
-
-- `mkdir 24-hour-video && cd 24-hour-video`
-- `npm init -y`
-- `npm install local-web-server --save-dev`
-- http://www.initializr.com/ 에서 부트스트랩 버전 UI 다운 후 작업 디렉토리에 압축 해제
-
-
-
 ##### 버킷(serverless-video-transcoded-chan) public접근 허용
 
 - serverless-video-upload-chan에서 파일 이름 을 바꾸면 serverless-video-transcoded-chan에 새로운 파일 생성
@@ -278,10 +271,185 @@
 
 
 
+##### 웹사이트 생성
+
+- `mkdir 24-hour-video && cd 24-hour-video`
+
+- `npm init -y`
+
+- `npm install local-web-server --save-dev`
+
+- http://www.initializr.com/ 에서 부트스트랩 버전 UI 다운 후 작업 디렉토리에 압축 해제
+
+- package.js 수정
+
+  ```js
+  {
+    "name": "24-hour-video",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "start": "ws",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+      "local-web-server": "^4.2.1"
+    }
+  }
+  ```
+
+  
+
 ##### 사용자 웹 페이지를 만들고 auth0.com과 연동하여 SNS 로그인 기능을 구현합니다. 
 
-- SNS 로그인은 GitHub을 포함해 총 3가지 방식을 지원합니다. 
+- index.html 수정 (navbar)
 
-##### 로그인에 성공하면 SNS에 등록된 프로필 사진과 이름, 그리고 video-transcoded 버킷에 저장된 동영상 목록을 출력합니다. (로그인/로그아웃 버튼 토글)
+  ```html
+  <div class="navbar-form navbar-right">
+      <button id="user-profile" class="btn btn-default">
+          <img id="profilepicture" />&nbsp;<span id="profilename"></span>
+      </button>
+      <button id="auth0-login" class="btn btn-success">Sign in</button>
+      <button id="auth0-logout" class="btn btn-success">Sign out</button>
+  </div>
+  ```
+
+- index.html 수정 (script)
+
+  ```html
+  <script src="https://cdn.auth0.com/js/lock/11.27/lock.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/user-controller.js"></script>
+  ```
+
+- config.js
+
+  ```js
+  var configConstants = {
+      auth0: {
+          domain: 'uc0.us.auth0.com',
+          clientId: '4z8TuVfm4KLg2X7NAIHKTFVQX4vAAfjF'
+      }
+  };
+  ```
+
+- main.js
+
+  ```js
+  (function() {
+      $(document).ready(function() {
+          userController.init(configConstants);
+      });
+  }());
+  ```
+
+- user-controller.js
+
+  ```js
+  var userController = {
+      data: {
+          auth0Lock: null,
+          config: null
+      }, 
+      uiElements: {
+          loginButton: null,
+          logoutButton: null, 
+          profileButton: null, 
+          profileNameLabel: null,
+          profileImage: null
+      }, 
+      init: function (config) {
+          var that = this;
+          this.uiElements.loginButton = $('#auth0-login');
+          this.uiElements.logoutButton = $('#auth0-logout');
+          this.uiElements.profileButton = $('#user-profile');
+          this.uiElements.profileNameLabel = $('#profilename');
+          this.uiElements.profileImage = $('#profilepicture');
+   
+          this.data.config = config;
+          this.data.auth0Lock = new Auth0Lock(config.auth0.clientId, config.auth0.domain);
+          var idToken = localStorage.getItem('userToken');
+          if (idToken) {
+              this.configureAuthenticatedRequests();
+              this.data.auth0Lock.getProfile(idToken, function (err, profile) {
+                  if (err) {
+                      return alert('프로필을 가져오는데 실패했습니다. ' + err.message);
+                  }
+                  that.showUserAuthenticationDetails(profile);
+              });
+          }
+          this.wireEvents();
+      },
+      configureAuthenticatedRequests: function() {
+          $.ajaxSetup({
+              'beforeSend': function (xhr) {
+                  xhr.setRequestsHeader('Authorization', 'Bearer ' + localStorage.getItem('userToken'));
+              }
+          })
+      }, 
+      showUserAuthenticationDetails: function(profile) {
+          console.log(profile);
+          var showAuthenticationElements = !!profile;
+          if (showAuthenticationElements) {
+              this.uiElements.profileNameLabel.text(profile.nickname);
+              this.uiElements.profileImage.attr('src', profile.picture);
+          }
+          this.uiElements.loginButton.toggle(!showAuthenticationElements);
+          this.uiElements.logoutButton.toggle(showAuthenticationElements);
+          this.uiElements.profileButton.toggle(showAuthenticationElements);
+      }, 
+      wireEvents: function() {
+          var that = this;
+          this.data.auth0Lock.on('authenticated', function(authResult) {
+              console.log(authResult);
+              that.data.auth0Lock.getUserInfo(authResult.accessToken, function (error, profile) {
+                  if (!error) {
+                      localStorage.setItem('userToken', authResult.accessToken);
+                      that.configureAuthenticatedRequests();
+                      that.showUserAuthenticationDetails(profile);
+                  }
+              });
+          });
+          this.uiElements.loginButton.click(function(e) {
+              that.data.auth0Lock.show();
+          });
+          this.uiElements.logoutButton.click(function(e) {
+              localStorage.removeItem('userToken');
+              that.uiElements.logoutButton.hide();
+              that.uiElements.profileButton.hide();
+              that.uiElements.loginButton.show();
+          });
+      }
+  };
+  ```
+
+- main.css
+
+  ```css
+  #auth0-logout {
+     display: none;
+  }
+   
+  #user-profile {
+     display: none;
+  }
+   
+  #profilepicture {
+     height: 20px;
+     width: 20px;
+  }
+  ```
+
+  
+
+##### video-transcoded 버킷에 저장된 동영상 목록을 출력합니다. (로그인/로그아웃 버튼 토글)
+
+
+
+
 
 ##### 동영상 목록을 클릭하면 해당 동영상을 재생합니다. 
