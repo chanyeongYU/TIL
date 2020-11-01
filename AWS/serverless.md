@@ -70,7 +70,7 @@
 
 - `npm init -y`
 
-- `npm aws-sdk`
+- `npm install aws-sdk`
 
 - index.js 작성
 
@@ -178,7 +178,7 @@
 
 ##### 람다함수 생성(set-permissions)
 
-- 이름: transcode-video
+- 이름: set-permissions
 - 런타임: Node.js 12
 - 역할: lambda-s3-execution-role
 
@@ -188,7 +188,7 @@
 
 - `npm init -y`
 
-- `npm aws-sdk`
+- `npm install aws-sdk`
 
 - index.js 작성
 
@@ -693,9 +693,102 @@
   };
   ```
 
+
+
+
+##### 람다함수 생성(custom-authorizer)
+
+- 이름: custom-authorizer
+
+- 권한: api-gateway-lambda-exec-role
+
+- index.js
+
+  ```js
+  "use strict";
+  
+  var jwt = require('jsonwebtoken');
+  
+  var generatePolicy = function(principalId, effect, resource) {
+      var authResponse = {};
+      authResponse.principalId = principalId;
+      if (effect && resource) {
+          var policyDocument = {};
+          policyDocument.Version = '2012-10-17';
+          policyDocument.Statement = [];
+          var statementOne = {};
+          statementOne.Action = 'execute-api:Invoke';
+          statementOne.Effect = effect;
+          statementOne.Resource = resource;
+          policyDocument.Statement[0] = statementOne;
+          authResponse.policyDocument = policyDocument;
+      }
+      return authResponse;
+  };
+  
+  exports.handler = function(event, context, callback) {
+  
+      console.log("### event", JSON.stringify(event));
+      
+      if(!event.authorizationToken) {
+          console.log(JSON.stringify(event));
+          callback('Could not find authToken');
+          return;
+      }
+  
+      var id_token = event.authorizationToken.split(' ')[1];
+      
+      var secretBuffer = new Buffer(process.env.AUTH0_SECRET);
+      jwt.verify(id_token, secretBuffer, function(err, decoded){
+          if(err) {
+              console.log('Failed jwt verification: ', err,
+              'auth: ', event.authorizationToken);
+              callback('Authorization Failed');
+          } else {
+              callback(null, generatePolicy('user', 'allow', event.methodArn));
+          }
+      })
+  };
+  ```
+
   
 
-##### 로그인에 성공하면 SNS에 등록된 프로필 사진과 이름, 그리고 video-transcoded 버킷에 저장된 동영상 목록을 출력
+- `npm install jsonwebtoken`
+
+- `npm install request`
+
+- package.js
+
+  ```js
+  {
+    "name": "custom-authorizer",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "deploy": "aws lambda update-function-code --function-name arn:aws:lambda:us-east-1:327187711308:function:custom-authorizer --zip-file fileb://Lambda-Deployment.zip",
+      "predeploy": "zip -r Lambda-Deployment.zip * -x *.zip *.log",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "jsonwebtoken": "^8.5.1",
+      "request": "^2.88.2"
+    }
+  }
+  ```
+
+- `npm run deploy`
+
+- API Gateway(get-video-list) Authorizer설정
+  - 람다: custom-authorizer
+  - 토큰: method.request.header.Authorization
+  
+- GET요청에 Authorizer적용
+
+
 
 
 
