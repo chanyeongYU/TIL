@@ -4,7 +4,7 @@
 
 - 하둡 WordCount프로그램의 동작 원리를 아래 예제를 통해 설명
 
- ![image-20201112135108462](C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20201112135108462.png)
+ <img src="..\..\img\image-20201112135108462.png" alt="image-20201112135108462" style="zoom:80%;" />
 
 - **Input 단계**에서 단어를 세기위한 데이터를 입력한다.
 - **Splitting 단계**에서 입력데이터를 하둡 분산 파일 시스템에서 정한 64MB 블록 사이즈로 나눠서 저장후 블록 단위로 처리를 한다.
@@ -203,24 +203,24 @@
 
      `# ./hadoop/bin/hadoop jar mywordcount102.jar mju.myhadoop.wordcount.WordCount input myoutput102 7`
 
-    ![image-20201112221115659](C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20201112221115659.png)
+    <img src="..\..\img\image-20201112221115659.png" alt="image-20201112221115659" style="zoom:80%;" />
 
 2. Mapper와  Reducer에게 부가적인 Parameter전달(Upper)
 
    `# ./hadoop/bin/hadoop jar mywordcount101.jar mju.myhadoop.wordcount.WordCount input myoutput101`
 
-    <img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20201112223105423.png" alt="image-20201112223105423" style="zoom:67%;" />
+    <img src="..\..\img\image-20201112223105423.png" alt="image-20201112223105423" style="zoom:67%;" />
 
 3. 성능 개선을 위한 Combiner 적용
 
    - Mapper에서 Reducer로 넘어갈때 전송되는 크기가 해당 기능 구현 전 보다 감소되었다.
    - 기능 구현 전
 
-    <img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20201112200606923.png" alt="image-20201112200606923" style="zoom:67%;" />
+    <img src="..\..\img\image-20201112200606923.png" alt="image-20201112200606923" style="zoom:67%;" />
 
    - 기능 구현 후
 
-    <img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20201112200638921.png" alt="image-20201112200638921" style="zoom: 67%;" />
+    <img src="..\..\img\image-20201112200638921.png" alt="image-20201112200638921" style="zoom: 67%;" />
 
 
 
@@ -232,10 +232,10 @@
 
 - 기본적으로 제공하는 WordCount 수행 결과
 
-   <img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20201112224112224.png" alt="image-20201112224112224" style="zoom:80%;" />
+    <img src="..\..\img\image-20201112224112224.png" alt="image-20201112224112224" style="zoom:80%;" />
 
 - 기능을 모두 구현한 후, 실행 결과
 
   `./hadoop/bin/hadoop jar mywordcount100.jar mju.myhadoop.wordcount.WordCount input myoutput100 5`
 
-   ![image-20201112224223185](C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20201112224223185.png)
+   <img src="..\..\img\image-20201112224223185.png" alt="image-20201112224223185" />
