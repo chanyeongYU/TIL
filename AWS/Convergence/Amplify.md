@@ -28,5 +28,5 @@
 
 ### 작동방식
 
- <img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20201123014805830.png" alt="image-20201123014805830" style="zoom:80%;" />
+ <img src="..\..\img\image-20201123014805830.png" alt="image-20201123014805830" style="zoom:80%;" />
 
