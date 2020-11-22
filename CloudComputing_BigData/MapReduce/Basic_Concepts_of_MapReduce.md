@@ -76,7 +76,7 @@ Many real world tasks are expressible in this model, as shown in the paper.
 
 
 
-### Implementation
+### Implementation 
 
 - Execution Overview
   - Input Data는 N개의 Input Split으로 Partitioning
@@ -85,7 +85,7 @@ Many real world tasks are expressible in this model, as shown in the paper.
   - Reduce는 Intermediate key 공간을 분할
     - 같은 Intermediate key를 공유하는 값들이 흩어지지 않게 하기 위해
 
-   <img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20201122223606249.png" alt="image-20201122223606249" style="zoom:80%;" />
+   <img src="..\..\img\image-20201122223606249.png" alt="image-20201122223606249" style="zoom:80%;" />
 
 
 
