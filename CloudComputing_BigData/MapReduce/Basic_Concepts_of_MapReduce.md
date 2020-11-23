@@ -81,11 +81,74 @@ Many real world tasks are expressible in this model, as shown in the paper.
 - Execution Overview
   - Input Data는 N개의 Input Split으로 Partitioning
   - N개의 Map 클래스가 호출 (Input Data의 크기와 비례)
-  - 다른 머신들에서 병력적으로 처리
-  - Reduce는 Intermediate key 공간을 분할
+  - 다른 머신들에서 **병렬적으로 처리**
+  - Reduce는 Intermediate key 공간을 M개로 분할
     - 같은 Intermediate key를 공유하는 값들이 흩어지지 않게 하기 위해
-
+  - 버퍼링된 Pairs는 주기적으로 M개로 분할된 공간에 나뉘어 로컬디스크에 기록
+  - **MapReduce 실행 과정, Suffling 방식 이해하기(8주차-1차시 51:50 ~ ):star:**
+  
    <img src="..\..\img\image-20201122223606249.png" alt="image-20201122223606249" style="zoom:80%;" />
+  
+  
+  
+   <img src="..\..\img\image-20201124013508044.png" alt="image-20201124013508044" style="zoom:80%;" />
+  
+  - 모든 Mapper가 같은 파티션의 갯수를 갖지 않을 수 있음
+    - => 비어있는 파티션이 있을 수도 있음
+    - Input Split의 구성에 따라 다를 수 있음
+
+
+
+### Fault Tolerance
+
+- Handling Worker Failures
+  - HDFS에서 DataNode는 NameNode에게 HeartBeat를 보냄
+    - 살아있다는 것을 알리기 위해
+  - 비슷하게 MapReduce도 Master가 Worker에게 **주기적으로 Ping을 전송**
+    - 특정 시간동안 반응이 없다면 Master는 Worker가 죽었다고 판단
+  - 죽은 Worker의 Map작업은 재설정되어 다른 Worker에게 전달
+  - **완료된 Map 작업은 Failure가 발생하면 다시 실행**
+    - **실패한 머신(죽은 Worker)의 로컬에 출력(중간 결과물)이 저장되어있기 때문에**
+    - 중간 결과물(Intermediate key/Value)은 사라지는 데이터이기 때문에 Global File System에 저장하는 것은 낭비
+  - **완료된 Reduce 작업은 Failure가 발생하면 다시 실행**
+    - **출력이 로컬에 저장되어 있는 것이 아니라, Global File System에 저장되기 때문에**
+
+
+
+* MapReduce is **resilient** to large-scale worker failures
+  * MapReduce는 대규모 Failure에 대해 회복 가능
+  * 죽은 머신이 실행되던 작업을 재실행하고, 계속 실행하여 작업 완료
+
+
+
+### Locality
+
+- Network bandwidth is a relatively scarce resource in computing environment
+
+  - Network bandwidth는 무한한 자원이 아니라 한정적인 자원
+  - 자원을 아껴쓰는 방식으로 변화
+    - -> 로컬에 있는 데이터를 사용하도록
+
+- Moving computations **close** to the data!
+
+  - Master는 Map 작업을 Data를 가지고 있는 머신에 할당되도록 함
+  - 할당이 실패하면 최대한 가까운 쪽으로 배치
+  - [참고](https://github.com/uc0/TIL/blob/master/CloudComputing_BigData/HDFS/Basic_Concepts_of_HDFS.md#file-io-and-replica-management)
+
+   <img src="..\..\img\image-20201124020331008.png" alt="image-20201124020331008" style="zoom:80%;" />
+
+
+
+### Large-Scale Indexing
+
+- Benefits of using MapReduce for the indexing system
+  - 인덱싱 코드가 간단해지고 경량화되고 쉬워짐
+  - 인덱싱 처리가 운영을 더 쉽게 할 수 있도록 해줌
+    - 머신의 결함이 MapReduce가 자동으로 해결해주고 관리해주기 때문에
+
+
+
+
 
 
 
