@@ -31,13 +31,20 @@
   - 모든 연결 지점에서 상호 인증 및 암호화를 제공하므로 디바이스와 AWS IoT Core 간에 입증된 자격 증명 없이는 데이터가 교환되지 않음
   - MQTT를 통해 연결하면 인증서 기반 인증을 사용할 수 있음
 - 디바이스 섀도
-  - ??
+  - 디바이스가 온라인 상태인지 여부에 관계없이 애플리케이션이 디바이스와 통신할 수 있도록 디바이스 상태를 유지
 - 규칙 엔진
   - 인프라를 관리할 필요 없이 글로벌 규모로 연결된 디바이스에서 생성된 데이터를 수집, 처리, 분석하고 이를 기반으로 조치 가능
 
 
 
-### 
+### 작동 방식
+
+ <img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20201124022122782.png" alt="image-20201124022122782" style="zoom:80%;" />![image-20201124022357035](C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20201124022357035.png)
+
+
+
+- EC2를 이용한 가상 디바이스 생성
+  - https://docs.aws.amazon.com/ko_kr/iot/latest/developerguide/creating-a-virtual-thing.html
 
 
 

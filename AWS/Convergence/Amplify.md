@@ -7,8 +7,10 @@
   - https://www.slideshare.net/awskorea/aws-amplify-aws-aws-summit-seoul-2019
 - Amplify Docs - Android Tutorial
   - https://docs.amplify.aws/start/q/integration/android
-
-
+- Amplify - DynamoDB - Lambda
+  - https://docs.amplify.aws/guides/api-rest/form-api-with-dynamodb-and-lambda/q/platform/js#updating-the-function-code
+- [API (REST) - Python API - Amplify Docs](https://docs.amplify.aws/guides/api-rest/python-api/q/platform/android#n3-updating-the-function-code)
+- https://docs.amplify.aws/sdk/api/rest/q/platform/android
 
 ### 장점
 
