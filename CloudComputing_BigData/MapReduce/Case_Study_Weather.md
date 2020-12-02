@@ -30,3 +30,25 @@
 
 - **여러대의 머신을 사용하면 머신들을 조율하는 것과 안정성을 고려해야함**
 
+
+
+- **Output 파일은 Reducer당 하나**
+
+
+
+##### Context
+
+- Context는 Mapper가 Hadoop 시스템의 나머지 부분과 상호 작용할 수 있도록 해줌
+- Job에 대한 설정 데이터와 출력을 방출할 수 있는 인터페이스를 포함
+
+
+
+- LongWritable → Java Long
+- Text → Java String 
+- IntWritable → Java Integer
+
+
+
+- Old API: `org.apache.hadoop.mapred`
+- New API: `org.apache.hadoop.mapreduce`
+
