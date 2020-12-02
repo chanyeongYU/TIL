@@ -19,7 +19,7 @@
 
 - :fire: **Data locality optimization**
 
-   <img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20201202030129609.png" alt="image-20201202030129609" style="zoom:80%;" />
+   <img src="..\..\img\image-20201202030129609.png" alt="image-20201202030129609" style="zoom:80%;" />
 
   
 
@@ -53,7 +53,7 @@
 
 #### Multiple Reducers
 
- <img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20201202220657682.png" alt="image-20201202220657682" style="zoom:80%;" />
+ <img src="..\..\img\image-20201202220657682.png" alt="image-20201202220657682" style="zoom:80%;" />
 
 - 매핑 작업의 출력(중간 결과물)이 분할
   - 리듀서의 갯수만큼 중간결과물이 남겨짐
@@ -66,7 +66,7 @@
 
 #### zero reduce tasks
 
- <img src="C:\Users\chan\AppData\Roaming\Typora\typora-user-images\image-20201202220648117.png" alt="image-20201202220648117" style="zoom:80%;" />
+ <img src="..\..\img\image-20201202220648117.png" alt="image-20201202220648117" style="zoom:80%;" />
 
 - 매핑 작업만 수행
 - 매핑작업의 결과물이 HDFS에서 쓰일 때
