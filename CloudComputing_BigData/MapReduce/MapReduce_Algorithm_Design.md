@@ -50,7 +50,7 @@
     - 작업이 시작할  때 한번 호출
     - 매퍼 하나가 담당하는 Input Split이 작업 하나
   - `void map(Kin key, Vin value, Mapper.Context context)`
-    - K/V 한 쌍당 한번 호출
+    - **Input K/V 한 쌍당 한번 호출**:fire:
   - `void cleanup(Mapper.Context context)`
     - 작업이 끝날 때 한번 호출
 
@@ -60,7 +60,7 @@
   - `void setup(Reducer.Context context)`
     - 작업이 시작할  때 한번 호출
   - `void reduce(Kin key, Iterable values, Reducer.Context context)`
-    - 각 Key 별로 한번씩 호출
+    - **각 Intermediate Key 별로 한번씩 호출:fire:**
   - `void cleanup(Reducer.Context context)`
     - 작업이 끝날 때 한번 호출
 
@@ -202,7 +202,7 @@
 
 - Configuration parameters
   - Passing parameters
-- DistributedCache
+- :star:**DistributedCache**
   - 모든 노드에서 공통으로 참조해야 할 파일이 있을 경우
   - 모든 노드에 Local Copy
 
@@ -217,3 +217,86 @@
   - counter 업데이트
   - 살아 있음을 나타냄
   - job configuration에 저장된 값들을 가져오기 위해 
+
+
+
+#### Hadoop Runtime System
+
+- **이점**
+
+  - 스케쥴링 
+    - 워커들에게 맵과 리듀스 작업 할당
+  - 데이터 배포
+    - 데이터와 가까운 쪽으로 프로세스를 이동
+  - 동기화 처리
+    - 리듀스로 넘어가는 단계
+    - gathers, sorts, and shuffles intermediate data
+  - 에러 및 결함 처리
+    - 워커의 에러 및 결함 탐지
+
+  
+
+- **딘점**
+
+  - 개발자는 데이터 및 실행에 대해 제한적인 제어만 가능
+    - map, reduce, combine, partitioner 4개의 함수로만 표현
+  - 알기 힘든 것
+    - 매퍼와 리듀서가 작동하는 곳
+    - 매퍼와 리듀서가 시작할 때나 끝날 때
+    - 특정 매퍼가 처리중인 입력
+    - 특정 리듀서가 처리중인 Intermediate Key
+
+
+
+#### Local Aggregation
+
+- 이상적인 스케일링의 특징
+
+  - 데이터 2배이면, 실행 시간이 2배이므로
+  - 리소스 2배, 실행 시간 절반!
+
+- 위에 특징을 구현하기 힘든 이유
+
+  - 동기화에 통신이 필요
+  - **통신이 성능을 낮춤**
+
+  :point_right: ​통신을 줄이기 위해 **Local Aggregation을 통해 중간 데이터 감소**:fire:
+
+  ​		- 개발자가 직접적으로 관여
+
+  :point_right: Combiner 사용
+
+  		- 하둡이 알아서 실행
+
+
+
+ <img src="..\..\img\image-20201203035513993.png" alt="image-20201203035513993" style="zoom:80%;" />
+
+
+
+- BaseLine vs Histogram vs Preserving State
+  - BaseLine 
+    - 일반적인 매퍼와 리듀서
+  - Histogram 
+    - 한 레코드에서 중복된 단어를 미리 합침
+  - **Preserving State**
+    - 한 Input Split에서 합치는 수준
+    - 단점
+      - 명시적인 메모리 관리가 요구됨
+      -  순서에 의존적인 문제가 발생할 수 있음
+
+
+
+- **In-mapper combining(Local Aggregation) vs. Combiner**
+  - In-mapper combining
+    - Local Aggregation은 디자인 패턴
+    - 개발자가 정확히 제어가능
+  - Combiner
+    - Combiner가 언제 불릴지 불분명함
+  - 일반적으로 In-mapper combining가 더 효율적임
+  - Combiner는 중간 데이터의 양을 줄여주지만 K/V 쌍의 수를 줄여주지는 않음
+  - In-mapper combining은  K/V 쌍의 수를 줄여줌
+    - 대신 메모리에서 추가적인 데이터구조의 관리 필요
+
+
+
