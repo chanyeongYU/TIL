@@ -50,7 +50,7 @@ metadata:
     name: pod-volume-2
 spec:
     containers:
-	- name: container
+    - name: container
         image: tmkube/init
         volumeMounts:
         - name: host-path
