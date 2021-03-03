@@ -11,21 +11,21 @@
 apiVersion: v1
 kind: Pod
 metadata:
-	name: pod-volume-1
+    name: pod-volume-1 
 spec:
     containers:
-    -	name: container1
+    - name: container1
         image: tmkube/init
         volumeMounts:
-        -	name:empty-dir
+        - name:empty-dir
         mountPath:/mount1
-    -	name: container2
+    - name: container2
         image: tmkube/init
         volmeMounts:
-        -	name: empty-dir
+        - name: empty-dir
         mountPath:/mount2
     volumes:
-    -	name: empty-dir
+    - name: empty-dir
     	emptyDir:{}
 ```
 
@@ -47,17 +47,17 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-	name: pod-volume-2
+    name: pod-volume-2
 spec:
-	containers:
-	-	name: container
-		image: tmkube/init
-		volumeMounts:
-		-	name: host-path
-			mountPath: /mount1
-	volumes:
-	-	name: host-path
-		hostPath:
+    containers:
+	- name: container
+        image: tmkube/init
+        volumeMounts:
+        - name: host-path
+            mountPath: /mount1
+    volumes:
+    - name: host-path
+        hostPath:
             path: /node-v
             type: Directory 
 ```
@@ -84,21 +84,21 @@ spec:
    apiVersion: v1
    kind Persistent Volume
    metadata:
-   	name: pv-01
+       name: pv-01
    spec:
-   	capacity:
-   		storage: 1G
-   	accessModes:
-   		- ReadWriteOnce
-   	local:
-   		path: /node-v
-   		#hostpath처럼 호스트에 있는 local path사용
-   	nodeAffinity:
-   	required:
-   		nodeSelectorTerms:
-   		- matchExpressions:
-   			# 연결된 Pod는 항상 node1에서만 생성
-   			-{key:node,operator:ln, values:[node1]}
+       capacity:
+           storage: 1G
+       accessModes:
+           - ReadWriteOnce
+       local:
+           path: /node-v
+           #hostpath처럼 호스트에 있는 local path사용
+       nodeAffinity:
+       required:
+           nodeSelectorTerms:
+           - matchExpressions:
+               # 연결된 Pod는 항상 node1에서만 생성
+               -{key:node,operator:ln, values:[node1]}
    ```
 
 2. **User가 PVC 생성**
@@ -107,14 +107,14 @@ spec:
    apiVersion: v1
    kind : PersistentVolumeClaim
    metadata:
-   	name: pvc-01
+       name: pvc-01
    spec:
-   	accessModes:
-   		-	ReadWriteOnce
-   	resources:
-   		requests:
-   			storage:1G
-   	storageClassName:""
+       accessModes:
+           - ReadWriteOnce
+       resources:
+           requests:
+               storage:1G
+       storageClassName:""
    ```
 
 3. **K8s가 PVC와 PV 연결**
@@ -127,18 +127,18 @@ spec:
    apiVersion: v1
    kind: Pod
    metadata:
-   	name: pod-volume-3
+       name: pod-volume-3
    spec:
-   	containers:
-   	-	name: container
-   		image: tmkube/init
-   		volumeMounts:
-   		-	name: pvc-pv
-   			mountPath: /volume
+       containers:
+       - name: container
+           image: tmkube/init
+           volumeMounts:
+           - name: pvc-pv
+               mountPath: /volume
    volumes:
-   	-	name : pvc-pv
-   		persistentVolumeClaim:
-   		claimName: pvc-01
+       - name : pvc-pv
+           persistentVolumeClaim:
+           claimName: pvc-01
    ```
 
    
