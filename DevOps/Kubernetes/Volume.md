@@ -1,5 +1,10 @@
 # Volume
 
+- 데이터를 안정적으로 관리하기 위해 사용
+- K8s Cluster와 분리되어 관리
+
+
+
 ### emptyDir
 
 - **컨테이너들끼리** 데이터를 공유하기 위해 볼륨을 사용
@@ -142,4 +147,71 @@ spec:
    ```
 
    
+
+### AccessMode
+
+- **RWO**: ReadWriteOnce
+- **ROM**: ReadOnlyMany
+- **RWM**: ReadWriteMany
+
+- 각각의 볼륨들 마다 지원해주는 모드가 다름
+
+
+
+### Dynamic Provisioning
+
+- User가 PVC를 생성하면 그거에 맞춰 PV를 생성
+- 사전에 미리 Dynamic Provisioning을 지원해주는 Storage Solution 설치가 필요
+  - StorageClass Object가 생성
+
+
+
+**StorageClass**
+
+- StorageClass를 활용해서 동적으로 PV를 만들 수 있음
+
+- 추가로 더 만들거나 Default 값을 설정 할 수  있음
+
+- PVC를 만들 때 StorageClassName을 설정하면 해당 Storage Solution과 연결된 PV와 볼륨이 생성
+
+  - StorageClassName을 `""` 이렇게 설정하면 k8s가 알아서 알맞은 PV를 찾아 연결되고 볼륨이 먼저 만들어지지않음
+
+    - 볼륨은 Pod와 연결되면 만들어짐 
+
+    
+
+
+
+### Status
+
+- **Available**: 최초 PV가 생성 될 때
+
+- **Bound**: PVC와 연결됨
+- **Released**: PVC가 삭제될 때
+- **Failed**: PV와 데이터간 연결에 문제가 생겼을 경우
+
+
+
+### ReclaimPolicy
+
+- **Retain**
+
+  - 데이터는 보존됨
+  - 다른 PVC에 다시 연결 할 수는 없음
+  - Default: 별도로 설정하지 않았을 경우 기본 값
+
+  
+
+- **Delete**
+
+  - PVC가 삭제되면 PV 삭제
+  - Volume의 종류의 따라 데이터 보존은 다름
+  - 재사용 불가
+  - StorageClass를 사용하여 생성하였을 경우 Default 값
+
+  
+
+- **Recycle**
+  - PV의 상태가 Available이 되고 PVC와 다시 연결 가능
+  - 데이터가 삭제됨
 
