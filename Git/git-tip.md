@@ -15,3 +15,26 @@
 
 - `git log --oneline --graph --decorate`
 
+
+
+### git 게정 설정
+
+- 전체 레포지토리에 설정할 경우
+
+  - `git config --global user.name "이름" `
+  - `git config --global user.email "이메일"`
+
+  
+
+- 특정 레포지토리에만 설정할 경우
+
+  - 회사에서는 빗버킷을 사용하고 집애서는 깃헙을 사용하기 때문에 레포별로 별도의 설정이 필요할 경우가 있다.
+
+  - `--local`으ㄴ `--global` 보다 높은 우선순위를 가짐
+
+  - `git config --local user.name "이름" `
+
+  - `git config --local user.email "이메일"`
+
+    
+
